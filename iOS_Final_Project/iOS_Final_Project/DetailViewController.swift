@@ -1,6 +1,5 @@
 //
 //  DetailViewController.swift
-//
 //  iOS_Final_Project
 //
 //  Copyright © 2018 Team TCH. All rights reserved.
