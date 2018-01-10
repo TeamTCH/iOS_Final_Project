@@ -57,7 +57,25 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func cameraAction(_ sender: UIButton) {
+        //open the camera
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .camera
+        //show camera on click
+        present(picker,animated: true,completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+        let fullString = NSMutableAttributedString(string: "")
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismiss(animated: true, completion: nil)
+        let imageString = NSAttributedString(attachment: imageAttachment)
+        
+        fullString.append(imageString)
+        fullString.append(NSAttributedString(string: ""))
+        
+        textView.attributedText = fullString
     }
     /*
     // MARK: - Navigation
