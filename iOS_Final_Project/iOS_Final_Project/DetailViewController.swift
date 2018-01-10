@@ -66,15 +66,17 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let fullString = NSMutableAttributedString(string: "")
+        //change below "" to "hello from <insert location here>
+        //image click should probably go here too
+        let fullString = NSMutableAttributedString(attributedString: textView.attributedText)
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismiss(animated: true, completion: nil)
         let imageString = NSAttributedString(attachment: imageAttachment)
         
         fullString.append(imageString)
         fullString.append(NSAttributedString(string: ""))
-        
+        //image doesn't save after leaving page right now
+        //NSString needs to be converted to binary and saved. No clue how to do it
         textView.attributedText = fullString
     }
     /*
