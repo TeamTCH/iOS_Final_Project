@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
     
+    
     var text : String = ""
     var refToSourceVC : ViewController!
     

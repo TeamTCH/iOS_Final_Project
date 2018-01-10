@@ -13,8 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var data : [String] = []
     var selectedRow : Int = -1
     var newRowText : String = ""
-    
-    
+        
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
