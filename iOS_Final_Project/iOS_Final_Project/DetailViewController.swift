@@ -7,9 +7,12 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var btn_photoLibrary: UIButton!
+    @IBOutlet weak var btn_camera: UIButton!
     
     
     var text : String = ""
@@ -43,7 +46,19 @@ class DetailViewController: UIViewController {
         refToSourceVC.newRowText = textView.text
         
     }
-
+    
+    @IBAction func photoLibraryAction(_ sender: UIButton) {
+        //open the photo library
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        //show photolibrary on click
+        present(picker,animated: true,completion: nil)
+    }
+    
+    @IBAction func cameraAction(_ sender: UIButton) {
+        
+    }
     /*
     // MARK: - Navigation
 

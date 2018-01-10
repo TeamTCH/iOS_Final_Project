@@ -65,28 +65,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XHU-7o-fe9">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oaf-oj-KFo">
+                                <rect key="frame" x="16" y="80" width="54" height="30"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="cameraAction:" destination="4GA-Pd-s8p" eventType="touchUpInside" id="xmH-AZ-rum"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRg-rn-mfX">
+                                <rect key="frame" x="212" y="80" width="92" height="30"/>
+                                <state key="normal" title="Photo Library"/>
+                                <connections>
+                                    <action selector="photoLibraryAction:" destination="4GA-Pd-s8p" eventType="touchUpInside" id="gZ3-b6-tCR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="XHU-7o-fe9" firstAttribute="top" secondItem="JUP-YM-edX" secondAttribute="top" id="BJl-DA-sOi"/>
+                            <constraint firstItem="Oaf-oj-KFo" firstAttribute="top" secondItem="JUP-YM-edX" secondAttribute="top" constant="16" id="6P2-oq-cX2"/>
+                            <constraint firstItem="XHU-7o-fe9" firstAttribute="top" secondItem="Oaf-oj-KFo" secondAttribute="bottom" constant="8" id="DtT-gn-4E7"/>
+                            <constraint firstItem="zRg-rn-mfX" firstAttribute="top" secondItem="JUP-YM-edX" secondAttribute="top" constant="16" id="Qc0-fa-D1s"/>
                             <constraint firstItem="XHU-7o-fe9" firstAttribute="bottom" secondItem="JUP-YM-edX" secondAttribute="bottom" id="U8Z-M8-0tn"/>
                             <constraint firstItem="XHU-7o-fe9" firstAttribute="leading" secondItem="JUP-YM-edX" secondAttribute="leading" id="Y8I-FP-IDZ"/>
+                            <constraint firstItem="Oaf-oj-KFo" firstAttribute="leading" secondItem="JUP-YM-edX" secondAttribute="leading" constant="16" id="Z9o-1z-qGi"/>
+                            <constraint firstItem="JUP-YM-edX" firstAttribute="trailing" secondItem="zRg-rn-mfX" secondAttribute="trailing" constant="16" id="dc5-Mp-YZP"/>
                             <constraint firstItem="XHU-7o-fe9" firstAttribute="trailing" secondItem="JUP-YM-edX" secondAttribute="trailing" id="kcx-wy-baV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JUP-YM-edX"/>
                     </view>
                     <connections>
+                        <outlet property="btn_camera" destination="Oaf-oj-KFo" id="CdT-rV-smv"/>
+                        <outlet property="btn_photoLibrary" destination="zRg-rn-mfX" id="0HH-9w-NE9"/>
                         <outlet property="textView" destination="XHU-7o-fe9" id="zFU-Wh-oOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17u-Be-z8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1597.5999999999999" y="115.59220389805098"/>
+            <point key="canvasLocation" x="1597.5" y="115.14084507042254"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="drO-Wm-DSc">
