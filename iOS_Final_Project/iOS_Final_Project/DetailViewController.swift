@@ -69,12 +69,17 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         //change below "" to "hello from <insert location here>
         //image click should probably go here too
         let fullString = NSMutableAttributedString(attributedString: textView.attributedText)
+        
         let imageAttachment = NSTextAttachment()
+        
         imageAttachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismiss(animated: true, completion: nil)
+        imageAttachment.bounds = CGRect(x:0, y:0, width:200, height:200);
         let imageString = NSAttributedString(attachment: imageAttachment)
         
         fullString.append(imageString)
         fullString.append(NSAttributedString(string: ""))
+        //currently testing with appending/attaching a link to the image, or rather the nsattributed string
+        //fullString.addAttributes(link, range: <#T##NSRange#>)(NSAttributedString(string: ""))
         //image doesn't save after leaving page right now
         //NSString needs to be converted to binary and saved. No clue how to do it
         textView.attributedText = fullString
