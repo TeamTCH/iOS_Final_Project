@@ -56,13 +56,31 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         present(picker,animated: true,completion: nil)
     }
     
+    //generic method to show a popup with one ok button
+    func showPopup(message: String, title: String){
+        // create the alert
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+
     @IBAction func cameraAction(_ sender: UIButton) {
-        //open the camera
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .camera
-        //show camera on click
-        present(picker,animated: true,completion: nil)
+        //if the camera exists
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            //open the camera
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .camera
+            //show camera on click
+            present(picker,animated: true,completion: nil)
+        }
+        else{
+            showPopup(message: "Looks like the camera isn't available right now. Try the Photo Library instead.", title: "Uh-Oh")
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
