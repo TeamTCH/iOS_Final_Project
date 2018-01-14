@@ -43,5 +43,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>The ends justify the means</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The purpose of the access is to get metadata from selecting an image to post to the notetaker.</string>
 </dict>
 </plist>

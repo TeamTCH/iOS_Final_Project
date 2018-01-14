@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -86,21 +87,64 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //change below "" to "hello from <insert location here>
         //image click should probably go here too
-        let fullString = NSMutableAttributedString(attributedString: textView.attributedText)
+        let fullString1 = NSMutableAttributedString(attributedString: textView.attributedText)
         
+        //setting up the image attachment
         let imageAttachment = NSTextAttachment()
-        
         imageAttachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismiss(animated: true, completion: nil)
         imageAttachment.bounds = CGRect(x:0, y:0, width:200, height:200);
+        
+        //setting the image as an attachment in a NSAttributedString
         let imageString = NSAttributedString(attachment: imageAttachment)
         
-        fullString.append(imageString)
-        fullString.append(NSAttributedString(string: ""))
-        //currently testing with appending/attaching a link to the image, or rather the nsattributed string
-        //fullString.addAttributes(link, range: <#T##NSRange#>)(NSAttributedString(string: ""))
+        //appended the NSAttributedString to the NSMutableAttributedString
+        fullString1.append(imageString)
+        
         //image doesn't save after leaving page right now
         //NSString needs to be converted to binary and saved. No clue how to do it
-        textView.attributedText = fullString
+        
+        
+        //---------
+        
+        //get geolocation and set it to show on textview
+        if let URL = info[UIImagePickerControllerReferenceURL] as? URL {
+            print("We got the URL as \(URL)")
+            let opts = PHFetchOptions()
+            opts.fetchLimit = 1
+            let getResults = PHAsset.fetchAssets(withALAssetURLs: [URL], options: opts)
+            let asset = getResults.firstObject
+            
+            
+            let lat = Double((asset?.location?.coordinate.latitude)!)
+            let lng = Double((asset?.location?.coordinate.longitude)!)
+            let message = "\nI'm right here!"
+            
+            
+            
+            //using geolocation data to print location of photo
+            let fullString2 = NSMutableAttributedString(string: message)
+            
+            //setting text with hyperlink
+            fullString2.addAttribute(NSAttributedStringKey.link, value: "http://www.google.com/maps/place/\(String(describing: lat)),\(String(describing: lng))", range: NSMakeRange(0, message.count))
+            //currently experiementing with these settings
+            //fullString2.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleNone, range: NSMakeRange(0, location.count))
+            //fullString2.addAttribute(NSAttributedStringKey.underlineColor, value: UIColor.clear, range: NSMakeRange(0, location.count))
+            
+            //textView.attributedText = fullString2
+            
+            //appends the second NSMutableAttributedString to the first
+            fullString1.append(fullString2)
+        }
+        
+        
+        textView.attributedText = fullString1
+        
+        
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL, options: [:])
+        return false
     }
     /*
     // MARK: - Navigation
