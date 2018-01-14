@@ -92,7 +92,11 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         //setting up the image attachment
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismiss(animated: true, completion: nil)
-        imageAttachment.bounds = CGRect(x:0, y:0, width:200, height:200);
+        
+        let width =  self.view.bounds.size.width
+        let height = width
+        
+        imageAttachment.bounds = CGRect(x:0, y:0, width: width, height: height);
         
         //setting the image as an attachment in a NSAttributedString
         let imageString = NSAttributedString(attachment: imageAttachment)
