@@ -114,26 +114,29 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             let getResults = PHAsset.fetchAssets(withALAssetURLs: [URL], options: opts)
             let asset = getResults.firstObject
             
+            //only get geolocation data if the coordinates exist
+            if(asset?.location?.coordinate.latitude != nil){
+                let lat = Double((asset?.location?.coordinate.latitude)!)
+                let lng = Double((asset?.location?.coordinate.longitude)!)
+                let message = "\nI'm right here!\nAdd details here:"
+                
+                
+                
+                //using geolocation data to print location of photo
+                let fullString2 = NSMutableAttributedString(string: message)
+                
+                //setting text with hyperlink
+                fullString2.addAttribute(NSAttributedStringKey.link, value: "http://www.google.com/maps/place/\(String(describing: lat)),\(String(describing: lng))", range: NSMakeRange(0, message.count-18))
+                //currently experiementing with these settings
+                //fullString2.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleNone, range: NSMakeRange(0, location.count))
+                //fullString2.addAttribute(NSAttributedStringKey.underlineColor, value: UIColor.clear, range: NSMakeRange(0, location.count))
+                
+                //textView.attributedText = fullString2
+                
+                //appends the second NSMutableAttributedString to the first
+                fullString1.append(fullString2)
+            }
             
-            let lat = Double((asset?.location?.coordinate.latitude)!)
-            let lng = Double((asset?.location?.coordinate.longitude)!)
-            let message = "\nI'm right here!\nAdd details here:"
-            
-            
-            
-            //using geolocation data to print location of photo
-            let fullString2 = NSMutableAttributedString(string: message)
-            
-            //setting text with hyperlink
-            fullString2.addAttribute(NSAttributedStringKey.link, value: "http://www.google.com/maps/place/\(String(describing: lat)),\(String(describing: lng))", range: NSMakeRange(0, message.count-18))
-            //currently experiementing with these settings
-            //fullString2.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleNone, range: NSMakeRange(0, location.count))
-            //fullString2.addAttribute(NSAttributedStringKey.underlineColor, value: UIColor.clear, range: NSMakeRange(0, location.count))
-            
-            //textView.attributedText = fullString2
-            
-            //appends the second NSMutableAttributedString to the first
-            fullString1.append(fullString2)
         }
         
         
