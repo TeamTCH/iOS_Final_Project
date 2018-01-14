@@ -117,7 +117,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             let lat = Double((asset?.location?.coordinate.latitude)!)
             let lng = Double((asset?.location?.coordinate.longitude)!)
-            let message = "\nI'm right here!"
+            let message = "\nI'm right here!\nAdd details here:"
             
             
             
@@ -125,7 +125,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             let fullString2 = NSMutableAttributedString(string: message)
             
             //setting text with hyperlink
-            fullString2.addAttribute(NSAttributedStringKey.link, value: "http://www.google.com/maps/place/\(String(describing: lat)),\(String(describing: lng))", range: NSMakeRange(0, message.count))
+            fullString2.addAttribute(NSAttributedStringKey.link, value: "http://www.google.com/maps/place/\(String(describing: lat)),\(String(describing: lng))", range: NSMakeRange(0, message.count-18))
             //currently experiementing with these settings
             //fullString2.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleNone, range: NSMakeRange(0, location.count))
             //fullString2.addAttribute(NSAttributedStringKey.underlineColor, value: UIColor.clear, range: NSMakeRange(0, location.count))
